@@ -54,13 +54,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             // Fetch user profile (with role) from backend — also auto-creates user if missing
             const meResult = await apiClient.getMe();
             const backendRole = meResult.user?.role as UserRole;
+            setRoleState(backendRole);
             if (backendRole) {
-              setRoleState(backendRole);
               localStorage.setItem('user_role', backendRole);
             } else {
-              // Role is null (new user) — check localStorage fallback
-              const savedRole = localStorage.getItem('user_role');
-              setRoleState(savedRole as UserRole);
+              localStorage.removeItem('user_role');
             }
           } catch (profileError: unknown) {
             // If backend unreachable, use localStorage fallback
@@ -114,6 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     apiClient.setAccessToken(null);
     setRoleState(null);
+    localStorage.removeItem('user_role');
     auth0Logout({
       logoutParams: {
         returnTo: window.location.origin,
