@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Inkscape Design System
+   Theme: Editorial Ink — Newspaper, publishing, authorship
+   Primary: Deep ink-navy blues (slightly purple-leaning)
+   Accents: Soft muted blues and warm paper whites
+   NO AI aesthetics — human, editorial, trustworthy
+*/
+
+@layer base {
+  :root {
+    /* Light Mode - Paper & Ink */
+    --background: 45 15% 97%;
+    --foreground: 230 25% 12%;
+
+    --card: 45 20% 99%;
+    --card-foreground: 230 25% 12%;
+
+    --popover: 45 20% 99%;
+    --popover-foreground: 230 25% 12%;
+
+    --primary: 230 45% 28%;
+    --primary-foreground: 45 20% 98%;
+
+    --secondary: 230 15% 90%;
+    --secondary-foreground: 230 25% 12%;
+
+    --muted: 45 10% 93%;
+    --muted-foreground: 230 15% 45%;
+
+    --accent: 230 15% 92%;
+    --accent-foreground: 230 25% 12%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 88%;
+    --input: 230 15% 88%;
+    --ring: 230 45% 28%;
+
+    --radius: 0.25rem;
+
+    /* Status Colors - Colorblind-safe palette */
+    --status-allowed: 145 55% 35%;
+    --status-allowed-foreground: 0 0% 100%;
+    --status-conditional: 35 85% 45%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 0 65% 45%;
+    --status-restricted-foreground: 0 0% 100%;
+
+    /* Sidebar */
+    --sidebar-background: 45 20% 99%;
+    --sidebar-foreground: 230 25% 12%;
+    --sidebar-primary: 230 45% 28%;
+    --sidebar-primary-foreground: 45 20% 98%;
+    --sidebar-accent: 230 15% 94%;
+    --sidebar-accent-foreground: 230 25% 12%;
+    --sidebar-border: 230 15% 88%;
+    --sidebar-ring: 230 45% 28%;
+
+    /* Custom Inkscape Editorial tokens */
+    --ink-navy: 230 25% 12%;
+    --ink-blue: 230 45% 28%;
+    --ink-blue-soft: 230 25% 92%;
+    --ink-teal: 145 55% 35%;
+    --ink-amber: 35 85% 45%;
+    --ink-coral: 0 65% 45%;
+    --ink-paper: 45 15% 97%;
+    --ink-paper-warm: 40 25% 95%;
+  }
+
+  .dark {
+    /* Dark Mode - Deep editorial navy */
+    --background: 230 30% 8%;
+    --foreground: 45 15% 95%;
+
+    --card: 230 28% 11%;
+    --card-foreground: 45 15% 95%;
+
+    --popover: 230 28% 11%;
+    --popover-foreground: 45 15% 95%;
+
+    --primary: 230 40% 65%;
+    --primary-foreground: 230 30% 8%;
+
+    --secondary: 230 25% 18%;
+    --secondary-foreground: 45 15% 95%;
+
+    --muted: 230 25% 18%;
+    --muted-foreground: 230 15% 55%;
+
+    --accent: 230 25% 18%;
+    --accent-foreground: 45 15% 95%;
+
+    --destructive: 0 55% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 25% 18%;
+    --input: 230 25% 18%;
+    --ring: 230 40% 65%;
+
+    /* Status Colors - Colorblind-safe (adjusted for dark) */
+    --status-allowed: 145 55% 45%;
+    --status-allowed-foreground: 0 0% 0%;
+    --status-conditional: 35 85% 55%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 0 55% 55%;
+    --status-restricted-foreground: 0 0% 100%;
+
+    /* Sidebar */
+    --sidebar-background: 230 28% 10%;
+    --sidebar-foreground: 45 15% 95%;
+    --sidebar-primary: 230 40% 65%;
+    --sidebar-primary-foreground: 230 30% 8%;
+    --sidebar-accent: 230 25% 16%;
+    --sidebar-accent-foreground: 45 15% 95%;
+    --sidebar-border: 230 25% 18%;
+    --sidebar-ring: 230 40% 65%;
+
+    /* Custom Inkscape Editorial tokens */
+    --ink-navy: 230 30% 8%;
+    --ink-blue: 230 40% 65%;
+    --ink-blue-soft: 230 30% 20%;
+    --ink-teal: 145 55% 45%;
+    --ink-amber: 35 85% 55%;
+    --ink-coral: 0 55% 55%;
+    --ink-paper: 230 30% 8%;
+    --ink-paper-warm: 230 25% 12%;
+  }
+
+  /* Colorblind Mode - Deuteranopia (red-green deficiency)
+     Remove all red/green contrasts, use blue + neutral gray */
+  .colorblind-deuteranopia {
+    /* Status: blue for allowed, amber for conditional, dark gray for restricted */
+    --status-allowed: 210 85% 45%;
+    --status-allowed-foreground: 0 0% 100%;
+    --status-conditional: 45 90% 50%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 220 10% 35%;
+    --status-restricted-foreground: 0 0% 100%;
+    
+    /* Increase accent contrast */
+    --primary: 220 50% 35%;
+    --ring: 220 50% 35%;
+    --ink-teal: 210 85% 45%;
+    --ink-coral: 220 10% 35%;
+  }
+
+  .dark.colorblind-deuteranopia,
+  .colorblind-deuteranopia.dark {
+    --status-allowed: 210 80% 55%;
+    --status-allowed-foreground: 0 0% 0%;
+    --status-conditional: 45 85% 60%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 220 10% 50%;
+    --status-restricted-foreground: 0 0% 100%;
+    
+    --primary: 220 50% 65%;
+    --ring: 220 50% 65%;
+    --ink-teal: 210 80% 55%;
+    --ink-coral: 220 10% 50%;
+  }
+
+  /* Colorblind Mode - Protanopia (red deficiency)
+     Avoid red entirely, use amber-gray and blue-gray */
+  .colorblind-protanopia {
+    --status-allowed: 200 75% 40%;
+    --status-allowed-foreground: 0 0% 100%;
+    --status-conditional: 40 80% 48%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 210 15% 30%;
+    --status-restricted-foreground: 0 0% 100%;
+    
+    --destructive: 40 70% 45%;
+    --destructive-foreground: 0 0% 0%;
+    --primary: 215 45% 32%;
+    --ring: 215 45% 32%;
+    --ink-coral: 210 15% 30%;
+  }
+
+  .dark.colorblind-protanopia,
+  .colorblind-protanopia.dark {
+    --status-allowed: 200 70% 55%;
+    --status-allowed-foreground: 0 0% 0%;
+    --status-conditional: 40 75% 58%;
+    --status-conditional-foreground: 0 0% 0%;
+    --status-restricted: 210 15% 55%;
+    --status-restricted-foreground: 0 0% 100%;
+    
+    --destructive: 40 65% 55%;
+    --destructive-foreground: 0 0% 0%;
+    --primary: 215 45% 60%;
+    --ring: 215 45% 60%;
+    --ink-coral: 210 15% 55%;
+  }
+
+  /* Colorblind Mode - Tritanopia (blue-yellow deficiency)
+     Reduce reliance on blue, shift to neutral slate/charcoal */
+  .colorblind-tritanopia {
+    --status-allowed: 160 50% 35%;
+    --status-allowed-foreground: 0 0% 100%;
+    --status-conditional: 350 55% 50%;
+    --status-conditional-foreground: 0 0% 100%;
+    --status-restricted: 0 0% 28%;
+    --status-restricted-foreground: 0 0% 100%;
+    
+    /* Shift primary away from blue */
+    --primary: 250 25% 30%;
+    --ring: 250 25% 30%;
+    --border: 250 15% 75%;
+    --ink-blue: 250 25% 30%;
+    --ink-blue-soft: 250 15% 90%;
+  }
+
+  .dark.colorblind-tritanopia,
+  .colorblind-tritanopia.dark {
+    --status-allowed: 160 45% 50%;
+    --status-allowed-foreground: 0 0% 0%;
+    --status-conditional: 350 50% 60%;
+    --status-conditional-foreground: 0 0% 100%;
+    --status-restricted: 0 0% 55%;
+    --status-restricted-foreground: 0 0% 0%;
+    
+    --primary: 250 30% 65%;
+    --ring: 250 30% 65%;
+    --border: 250 20% 25%;
+    --ink-blue: 250 30% 65%;
+    --ink-blue-soft: 250 20% 22%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Editorial Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* Smooth text size transitions */
+  html {
+    transition: font-size 0.15s ease-out;
+  }
+}
+
+@layer components {
+  /* Editorial Card - Block style, not floating widget */
+  .ink-card {
+    @apply bg-card border border-border p-6;
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .ink-card-hover {
+    @apply ink-card transition-all duration-200;
+    position: relative;
+  }
+
+  .ink-card-hover:hover {
+    @apply border-primary/30;
+  }
+
+  /* Editorial gradient text */
+  .ink-gradient-text {
+    @apply bg-gradient-to-r from-primary to-ink-teal bg-clip-text text-transparent;
+  }
+
+  .ink-focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Editorial Section Divider - Ink line style */
+  .ink-divider {
+    @apply relative my-8;
+  }
+
+  .ink-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--border)) 15%,
+      hsl(var(--border)) 85%,
+      transparent 100%
+    );
+  }
+
+  /* Editorial Masthead styling */
+  .ink-masthead {
+    @apply flex items-center gap-4;
+  }
+
+  /* Subtle ink stroke accent - decorative */
+  .ink-stroke-accent {
+    position: relative;
+  }
+
+  .ink-stroke-accent::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 2.5rem;
+    height: 2px;
+    background: hsl(var(--primary));
+    opacity: 0.6;
+  }
+
+  /* Section headline styling */
+  .ink-section-title {
+    @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.15em;
+  }
+
+  /* Subtle background texture for sections */
+  .ink-paper-texture {
+    background-image: 
+      radial-gradient(ellipse at 20% 30%, hsl(var(--ink-blue-soft) / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsl(var(--ink-blue-soft) / 0.1) 0%, transparent 50%);
+  }
+}
+
+/* Subtle ink scribble decorative element */
+@layer utilities {
+  .ink-scribble {
+    position: relative;
+  }
+
+  .ink-scribble::before {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='100' viewBox='0 0 200 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 50 Q 30 20, 60 50 T 120 50 T 195 50' stroke='%23334155' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 100px;
+  }
+
+  .ink-scribble-top::before {
+    top: -20px;
+    right: 10%;
+  }
+
+  .ink-scribble-bottom::before {
+    bottom: -20px;
+    left: 10%;
+    transform: rotate(180deg);
+  }
+}
